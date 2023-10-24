@@ -92,5 +92,36 @@ shop_list = get_shop_list_by_dishes(dishes_to_cook, person_count, cook_book)
 print(shop_list)
 
 
+folder_path = 'C:/Users/Асель/Desktop/netology/cooking book'
+
+
+file_list = os.listdir(folder_path)
+
+
+file_info_list = []
+
+
+for file_name in file_list:
+    if file_name in ['one.txt', 'two.txt', 'three.txt']:
+        file_path = os.path.join(folder_path, file_name)
+        if os.path.isfile(file_path):
+            with open(file_path, 'r', encoding='utf-8') as file:
+                lines = file.readlines()
+                file_info_list.append((file_name, len(lines), lines))
+
+
+file_info_list.sort(key=lambda x: x[1])
+
+
+output_file_path = 'C:/Users/Асель/Desktop/netology/cooking book/cook.txt'
+with open(output_file_path, 'w', encoding='utf-8') as output_file:
+    for file_name, line_count, lines in file_info_list:
+        output_file.write(file_name + '\n')
+        output_file.write(str(line_count) + '\n')
+        output_file.writelines(lines)
+
+print("Итоговый файл создан:", output_file_path)
+
+
 
  
